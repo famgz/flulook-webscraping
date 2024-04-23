@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 from pathlib import Path
-from famgz_utils import print
 from config import debug_dir
 
 
@@ -42,10 +41,10 @@ class Product:
             return None
 
     def get_fullName(self):
-        return self.soup.select_one('img[itemprop="image"]')['alt']
+        return self.soup.select_one('img[itemprop="image"]').get('alt')
     
     def get_url(self):
-        return self.soup.select_one('a[itemprop="url"]')['href']
+        return self.soup.select_one('a[itemprop="url"]').get('href')
     
     def get_category(self):
         if not self.url:
@@ -56,10 +55,14 @@ class Product:
         if not self.url:
             return None
         return self.url.strip('/').split('/')[-1]
-    
+
     def get_price(self):
-        return self.soup.select_one('meta[itemprop="price"]').get('content')
-    
+        try:
+            return self.soup.select_one('meta[itemprop="price"]').get('content')
+        except AttributeError:
+            self.log_debug()
+            return None
+
     def get_imgUrl(self):
         return self.soup.select_one('img[itemprop="image"]').get('src')
 

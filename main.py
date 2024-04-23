@@ -1,7 +1,7 @@
 from time import sleep
 import requests
 from bs4 import BeautifulSoup
-from famgz_utils import json_, print
+from utils import json_, print
 from config import products_json_path, sample_path
 from product import Product
 
@@ -52,7 +52,7 @@ def scrape():
         products_list += products_new
         print(f'{len(items)} items -> [bright_green]{len(products)} new products')
         write_products_json(products_list)
-        break
+        # break
     
     print(f'\nSearch finished with [bright_blue]{count_products_found} items[/] and [purple]{count_products_new} new products')
 
@@ -63,5 +63,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-    
