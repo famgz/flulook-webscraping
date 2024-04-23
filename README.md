@@ -7,9 +7,9 @@ https://www.flulook.com.br/loja/busca.php?loja=809533
 ```
 git clone https://github.com/famgz/flulook-webscraping.git
 
-pip install -r requirements.txt
-
 cd flulook-webscraping
+
+pip install -r requirements.txt
 
 python main.py
 ```
