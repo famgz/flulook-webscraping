@@ -2,15 +2,23 @@
 
 https://www.flulook.com.br/loja/busca.php?loja=809533
 
-### Installation and Usage
+### Installation
 
 ```
 git clone https://github.com/famgz/flulook-webscraping.git
+```
 
+```
 cd flulook-webscraping
+```
 
+```
 pip install -r requirements.txt
+```
 
+### Usage
+
+```
 python main.py
 ```
 
