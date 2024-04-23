@@ -12,7 +12,6 @@ pip install -r requirements.txt
 cd flulook-webscraping
 
 python main.py
-
 ```
 
 Data will be written to `./data/products.json`
