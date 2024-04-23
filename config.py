@@ -1,5 +1,5 @@
 from pathlib import Path
-from famgz_utils import json_
+from utils import json_
 
 source_dir = Path(__file__).parent.resolve()
 data_dir = Path(source_dir, 'data')
@@ -9,9 +9,11 @@ sample_path = Path(source_dir, 'product-sample.html')
 
 # create folders
 for path in [data_dir, debug_dir]:
-     if not path.exists:
-          path.mkdir(exist_ok=True)
+     if not path.exists():
+          path.mkdir(exist_ok=True, parents=True)
 
 # create 
 if not products_json_path.exists():
      json_(products_json_path, [])
+
+print()
