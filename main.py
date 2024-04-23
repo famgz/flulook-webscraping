@@ -49,8 +49,10 @@ def scrape():
         products = [Product(item).to_dict() for item in items]
         products_new = [x for x in products if x not in products_list]
         count_products_new += len(products_new)
-        products_list += products_new
         print(f'{len(items)} items -> [bright_green]{len(products)} new products')
+        if not products_new:
+            continue
+        products_list += products_new
         write_products_json(products_list)
         # break
     
