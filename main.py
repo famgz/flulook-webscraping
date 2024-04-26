@@ -19,7 +19,7 @@ def write_products_json(products_dict):
 
 def load_sample():
     with open(sample_path) as f:
-        return BeautifulSoup(f, 'lxml')
+        return BeautifulSoup(f, 'html.parser')
 
 
 def test():
@@ -56,7 +56,7 @@ def scrape():
         if not res.ok:
             print(f'[black on yellow]Unable to get page {url}\nAborting...')
             return
-        page = BeautifulSoup(res.content, 'lxml')
+        page = BeautifulSoup(res.content, 'html.parser')
         items = page.select('li.item.flex')
         count_products_found += len(items)
         if not items:
@@ -76,7 +76,8 @@ def scrape():
             f'{len(items)} items -> [{color(products_new)}]{len(products_new)} new products[/] | [{color(products_updated)}]{len(products_updated)} updated products')
         products_dict.update(products)
 
-        if pg > 5:
+        # for tests
+        if pg > 3:
             pass
             # break
 
