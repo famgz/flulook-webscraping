@@ -42,19 +42,20 @@ class Product:
 
     def get_fullName(self):
         return self.soup.select_one('img[itemprop="image"]').get('alt')
-    
+
     def get_url(self):
-        return self.soup.select_one('a[itemprop="url"]').get('href')
-    
+        return self.soup.select_one('a[itemprop="url"]').get('href').strip('/')
+
     def get_category(self):
         if not self.url:
             return None
-        return self.url.strip('/').split('/')[-2]
-    
+        tokens = self.url.split('/')
+        return tokens[-2] if len(tokens) == 5 else None
+
     def get_slug(self):
         if not self.url:
             return None
-        return self.url.strip('/').split('/')[-1]
+        return self.url.split('/')[-1]
 
     def get_price(self):
         try:
@@ -65,7 +66,6 @@ class Product:
 
     def get_imgUrl(self):
         return self.soup.select_one('img[itemprop="image"]').get('src')
-
 
     def to_dict(self):
         return dict(
